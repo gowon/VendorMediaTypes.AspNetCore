@@ -1,6 +1,6 @@
 # VendorMediaTypes.AspNetCore
 
-Support content-based action selection in ASP.NET Core using custom vendor media types.
+Support content-based action selection in ASP.NET Core using custom vendor media types. This project creates a clear path for exposing CQRS through a RESTful API.
 
 ## Usage 
 
@@ -23,6 +23,19 @@ public void ConfigureServices(IServiceCollection services)
         });
 
     //...
+}
+```
+
+Then, on your controller action, decorate the controller action with the `VendorMediaTypes` attribute and use the `VendorMediaTypeRequest` as the Action parameter. After successful routing, the `VendorMediaTypeRequest` can be used to generate the domain model defined in the request.
+
+```csharp
+// GET: api/ping
+[HttpPost]
+[VendorMediaTypes(typeof(Ping), typeof(DetailedPing))]
+public async Task<IActionResult> ExecutePing(VendorMediaTypeRequest request)
+{
+    var query = request.CreateModel();
+    // ...
 }
 ```
 
