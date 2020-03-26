@@ -20,7 +20,7 @@
 
         // GET: api/Ping
         [HttpPost]
-        [VendorMediaTypes(typeof(Ping), typeof(DetailedPing))]
+        [ConsumesVendorType(typeof(DetailedPing), typeof(Ping))]
         public async Task<IActionResult> ExecutePing(VendorMediaTypeRequest request)
         {
             var query = request.CreateModel();

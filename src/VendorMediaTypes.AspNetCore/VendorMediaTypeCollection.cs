@@ -5,17 +5,9 @@
 
     public sealed class VendorMediaTypeCollection : Dictionary<Type, string[]>
     {
-        private static readonly VendorMediaTypeCollection Instance = new VendorMediaTypeCollection();
-
-        private VendorMediaTypeCollection()
+        public void Add<T>(params string[] values)
         {
-        }
-
-        public static VendorMediaTypeCollection GetInstance() => Instance;
-
-        public void Add<T>(params string[] value)
-        {
-            Add(typeof(T), value);
+            Add(typeof(T), values);
         }
     }
 }

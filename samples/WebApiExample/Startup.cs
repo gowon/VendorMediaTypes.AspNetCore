@@ -8,7 +8,6 @@ namespace WebApiExample
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
-    using Queries;
     using VendorMediaTypes.AspNetCore;
     using VendorMediaTypes.AspNetCore.Swashbuckle;
 
@@ -26,22 +25,13 @@ namespace WebApiExample
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
-            services.AddMvc(options =>
-                {
-                    options.EnableEndpointRouting = false;
-                })
-                .AddVendorMediaTypesSupport(collection =>
-                {
-                    collection.Add<Ping>("application/vnd.ping+json", "application/vnd.health-check+json");
-                    collection.Add<DetailedPing>("application/vnd.detailed-ping+json");
-                });
+            services.AddMvc(options => { options.EnableEndpointRouting = false; });
 
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "My API", Version = "v1"});
+            services.AddVendorMediaTypesSupport(Assembly.GetExecutingAssembly());
 
-                c.MaskVendorMediaTypeRequests();
-            });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "My API", Version = "v1"}); });
+
+            services.AddVendorMediaTypesToSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
