@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VendorMediaTypes.AspNetCore\VendorMediaTypes.AspNetCore.csproj" />
+    <ProjectReference Include="..\VendorMediaTypes\VendorMediaTypes.csproj" />
   </ItemGroup>
 
 </Project>

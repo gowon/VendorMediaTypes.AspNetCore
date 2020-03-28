@@ -2,7 +2,7 @@
 {
     using MediatR;
     using Models;
-    using VendorMediaTypes.AspNetCore;
+    using VendorMediaTypes;
 
     [MediaType("application/vnd.ping+json", "application/vnd.health-check+json")]
     public class Ping : IRequest<Pong>

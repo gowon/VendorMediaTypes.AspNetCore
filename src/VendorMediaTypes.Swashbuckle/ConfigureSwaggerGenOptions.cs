@@ -1,4 +1,4 @@
-﻿namespace VendorMediaTypes.AspNetCore.Swashbuckle
+﻿namespace VendorMediaTypes.Swashbuckle
 {
     using System;
     using global::Swashbuckle.AspNetCore.SwaggerGen;

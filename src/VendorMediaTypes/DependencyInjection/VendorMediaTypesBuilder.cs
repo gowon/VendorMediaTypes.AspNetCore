@@ -1,4 +1,4 @@
-﻿namespace VendorMediaTypes.AspNetCore
+﻿namespace VendorMediaTypes.DependencyInjection
 {
     using Microsoft.Extensions.DependencyInjection;
 

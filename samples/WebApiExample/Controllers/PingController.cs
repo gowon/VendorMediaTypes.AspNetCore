@@ -5,7 +5,7 @@
     using MediatR;
     using Microsoft.AspNetCore.Mvc;
     using Queries;
-    using VendorMediaTypes.AspNetCore;
+    using VendorMediaTypes;
 
     [Route("api/[controller]")]
     [ApiController]

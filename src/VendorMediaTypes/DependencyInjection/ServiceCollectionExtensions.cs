@@ -1,4 +1,4 @@
-﻿namespace VendorMediaTypes.AspNetCore
+﻿namespace VendorMediaTypes.DependencyInjection
 {
     using System;
     using System.Reflection;
@@ -7,9 +7,9 @@
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using Microsoft.Extensions.Options;
 
-    public static class StartupExtensions
+    public static class ServiceCollectionExtensions
     {
-        public static IVendorMediaTypesBuilder AddVendorMediaTypesSupport(this IServiceCollection services,
+        public static IVendorMediaTypesBuilder AddVendorMediaTypes(this IServiceCollection services,
             Action<VendorMediaTypeCollection> setupAction = null)
         {
             if (services == null)

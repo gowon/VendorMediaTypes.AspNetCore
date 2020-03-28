@@ -1,4 +1,4 @@
-﻿namespace VendorMediaTypes.AspNetCore
+﻿namespace VendorMediaTypes
 {
     using System;
     using System.Collections.Generic;

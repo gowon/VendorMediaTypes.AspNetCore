@@ -2,7 +2,7 @@
 {
     using MediatR;
     using Models;
-    using VendorMediaTypes.AspNetCore;
+    using VendorMediaTypes;
 
     [MediaType("application/vnd.detailed-ping+json")]
     public class DetailedPing : IRequest<DetailedPong>

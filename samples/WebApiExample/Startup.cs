@@ -8,8 +8,8 @@ namespace WebApiExample
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
     using Microsoft.OpenApi.Models;
-    using VendorMediaTypes.AspNetCore;
-    using VendorMediaTypes.AspNetCore.Swashbuckle;
+    using VendorMediaTypes.DependencyInjection;
+    using VendorMediaTypes.Swashbuckle;
 
     public class Startup
     {
@@ -27,7 +27,7 @@ namespace WebApiExample
 
             services.AddMvc(options => { options.EnableEndpointRouting = false; });
 
-            services.AddVendorMediaTypesSupport()
+            services.AddVendorMediaTypes()
                 .AddSwaggerGenSupport();
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "My API", Version = "v1"}); });

@@ -11,12 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\VendorMediaTypes.AspNetCore.Swashbuckle\VendorMediaTypes.AspNetCore.Swashbuckle.csproj" />
-    <ProjectReference Include="..\..\src\VendorMediaTypes.AspNetCore\VendorMediaTypes.AspNetCore.csproj" />
+    <Folder Include="Commands\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
+    <ProjectReference Include="..\..\src\VendorMediaTypes.Swashbuckle\VendorMediaTypes.Swashbuckle.csproj" />
+    <ProjectReference Include="..\..\src\VendorMediaTypes\VendorMediaTypes.csproj" />
   </ItemGroup>
 
 
