@@ -74,7 +74,7 @@ public async Task<IActionResult> ExecutePing(VendorMediaTypeRequest request)
 
 ### Add support for SwaggerGen
 
-If you are using Swashbuckle to generate OpenAPI spec and Swagger UI documentation, it is important to use the `VendorMediaTypes.Swashbuckle` to configure Swashbuckle on how to properly render endpoints that use VendorMediaTypes. This is accomplished by using `AddSwaggerGenSupport` during registraion.
+If you are using [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) to generate OpenAPI spec and Swagger UI documentation, it is important to use the `VendorMediaTypes.Swashbuckle` package to configure Swashbuckle on how to properly render endpoints that use VendorMediaTypes. This is accomplished by using `AddSwaggerGenSupport` during registraion.
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
