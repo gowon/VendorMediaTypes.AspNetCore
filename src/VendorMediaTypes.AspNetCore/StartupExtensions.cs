@@ -1,7 +1,6 @@
 ﻿namespace VendorMediaTypes.AspNetCore
 {
     using System;
-    using System.Linq;
     using System.Reflection;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.DependencyInjection;
@@ -10,30 +9,8 @@
 
     public static class StartupExtensions
     {
-        public static IServiceCollection AddVendorMediaTypesSupport(this IServiceCollection services,
-            Assembly assembly)
-        {
-            return services.AddVendorMediaTypesSupport(collection =>
-            {
-                var list = assembly.GetTypes()
-                    .Where(type => Attribute.IsDefined(type, typeof(MediaTypeAttribute)))
-                    .Select(type => new
-                    {
-                        Type = type,
-                        Attributes = type.GetCustomAttributes<MediaTypeAttribute>()
-                            .SelectMany(attribute => attribute.Types).ToArray()
-                    })
-                    .ToList();
-
-                foreach (var item in list)
-                {
-                    collection.Add(item.Type, item.Attributes);
-                }
-            });
-        }
-
-        public static IServiceCollection AddVendorMediaTypesSupport(this IServiceCollection services,
-            Action<VendorMediaTypeCollection> setupAction)
+        public static IVendorMediaTypesBuilder AddVendorMediaTypesSupport(this IServiceCollection services,
+            Action<VendorMediaTypeCollection> setupAction = null)
         {
             if (services == null)
             {
@@ -42,10 +19,19 @@
 
             // Setup media types and add them to the DI
             var collection = new VendorMediaTypeCollection();
-            setupAction.Invoke(collection);
+            if (setupAction == null)
+            {
+                collection.AddAssembly(Assembly.GetCallingAssembly());
+            }
+            else
+            {
+                setupAction.Invoke(collection);
+            }
+
             services.TryAddSingleton(collection);
-            services.AddSingleton<IConfigureOptions<MvcOptions>, ConfigureVendorMediaTypesMvcOptions>();
-            return services;
+            services.TryAddEnumerable(ServiceDescriptor
+                .Singleton<IConfigureOptions<MvcOptions>, ConfigureVendorMediaTypesMvcOptions>());
+            return new VendorMediaTypesBuilder(services);
         }
     }
 }

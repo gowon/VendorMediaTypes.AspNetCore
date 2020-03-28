@@ -4,7 +4,6 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.IO;
-    using System.Linq;
     using System.Net.Http;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -24,10 +23,8 @@
 
             var contentType = bindingContext.HttpContext.Request.ContentType;
 
-            var match = collection.SingleOrDefault(pair => pair.Value.Any(contentType.Contains));
-            if (match.Equals(default(KeyValuePair<Type, string[]>)))
+            if (!collection.TryGetType(contentType, out var match))
             {
-                // we couldn't find a matching type
                 return;
             }
 
@@ -83,7 +80,7 @@
             var result = new VendorMediaTypeRequest
             {
                 ContentType = contentType,
-                ModelType = match.Key,
+                ModelType = match,
                 PropertyBag = new ReadOnlyDictionary<string, object>(properties)
             };
 

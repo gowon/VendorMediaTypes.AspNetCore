@@ -27,11 +27,10 @@ namespace WebApiExample
 
             services.AddMvc(options => { options.EnableEndpointRouting = false; });
 
-            services.AddVendorMediaTypesSupport(Assembly.GetExecutingAssembly());
+            services.AddVendorMediaTypesSupport()
+                .AddSwaggerGenSupport();
 
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "My API", Version = "v1"}); });
-
-            services.AddVendorMediaTypesToSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,14 +43,8 @@ namespace WebApiExample
 
             app.UseHttpsRedirection();
 
-            //app.UseRouting();
-
             app.UseAuthorization();
 
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllers();
-            //});
             app.UseMvc();
 
             app.UseSwagger();

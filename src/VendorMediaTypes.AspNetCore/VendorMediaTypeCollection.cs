@@ -5,9 +5,5 @@
 
     public sealed class VendorMediaTypeCollection : Dictionary<Type, string[]>
     {
-        public void Add<T>(params string[] values)
-        {
-            Add(typeof(T), values);
-        }
     }
 }

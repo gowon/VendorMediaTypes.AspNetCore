@@ -6,11 +6,11 @@
     using Microsoft.Extensions.Options;
     using Microsoft.OpenApi.Models;
 
-    public class ConfigureVendorMediaTypesSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
+    public class ConfigureSwaggerGenOptions : IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public ConfigureVendorMediaTypesSwaggerGenOptions(IServiceProvider serviceProvider)
+        public ConfigureSwaggerGenOptions(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
         }
